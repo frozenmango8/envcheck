@@ -1,0 +1,63 @@
+{
+  "name": "@frozenmango8/envcheck",
+  "version": "0.1.0",
+  "description": "Validate .env against .env.example. Report missing, empty, and extra variables, and fail CI with a non-zero exit code.",
+  "keywords": [
+    "env",
+    "dotenv",
+    ".env",
+    "environment",
+    "environment-variables",
+    "cli",
+    "ci",
+    "validation",
+    "envcheck"
+  ],
+  "license": "MIT",
+  "author": "frozenmango8",
+  "homepage": "https://github.com/frozenmango8/envcheck#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frozenmango8/envcheck.git"
+  },
+  "bugs": {
+    "url": "https://github.com/frozenmango8/envcheck/issues"
+  },
+  "type": "module",
+  "bin": {
+    "envcheck": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "biome check . && tsc --noEmit",
+    "format": "biome check --write .",
+    "test": "node --import tsx --test test/*.test.ts",
+    "prepublishOnly": "npm run lint && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.9",
+    "@types/node": "^26.6.11",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
